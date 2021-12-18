@@ -37,5 +37,13 @@ public class RepositoryChocolate {
         chocolateInterface.delete(chocolate);
     }
 
+  public List<Chocolate>getByPrice(double price){
+       return chocolateInterface.findByPrice(price);
+    }
+
+    public List<Chocolate> getByDescriptionContainingIgnoreCase(String description) {
+        return chocolateInterface.findByDescriptionContainingIgnoreCase(description);
+    }
+
 
 }

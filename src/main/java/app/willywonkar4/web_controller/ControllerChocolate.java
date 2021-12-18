@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api/chocolate")
-@CrossOrigin("*")
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 public class ControllerChocolate {
 
     @Autowired
@@ -55,5 +56,15 @@ public class ControllerChocolate {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean deleteChocolate(@PathVariable("reference") String reference) {
         return chocolateService.deleteChocolate(reference);
+    }
+
+    @GetMapping("/price/{price}")
+    public List<Chocolate>getByPrice(@PathVariable("price")double price){
+        return chocolateService.getByPrice(price);
+    }
+
+    @GetMapping("/description/{description}")
+    public List<Chocolate> getByByDescriptionContainingIgnoreCase(@PathVariable("description") String description) {
+        return chocolateService.getByDescriptionContainingIgnoreCase(description);
     }
 }

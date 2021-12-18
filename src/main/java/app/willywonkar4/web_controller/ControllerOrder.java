@@ -62,7 +62,7 @@ public class ControllerOrder {
     public List<Order> findByZone(@PathVariable("zona") String zona) {
         return orderService.findByZone(zona);
     }
-        //Métodos del reto 4
+    //Métodos del reto 4
     //Reto 4: Ordenes de un asesor
     @GetMapping("/salesman/{id}")
     public List<Order> ordersSalesManByID(@PathVariable("id") Integer id){

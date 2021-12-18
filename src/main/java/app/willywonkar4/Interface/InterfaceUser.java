@@ -1,6 +1,7 @@
 package app.willywonkar4.Interface;
 
 import app.willywonkar4.model.User;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
@@ -16,5 +17,9 @@ public interface InterfaceUser extends MongoRepository<User, Integer> {
 
     //metodo del crud que calcula el usuario con el ultimo Id
     Optional<User> findTopByOrderByIdDesc();
+
+    Optional<User> findByNameOrEmail(String name, String email);
+
+    List<User> findByMonthBirthtDay(String monthBirthtDay);
 
 }

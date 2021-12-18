@@ -149,4 +149,10 @@ public class ServiceUser {
             return usuario.get();
         }
     }
+    /**
+     * Metodo que hace una peticion del mes de nacimiento.
+     */
+    public List<User> getByMonthBirthDay(String monthBirthDay) {
+        return userRepository.getByMonthBirthtDay(monthBirthDay);
+    }
 }

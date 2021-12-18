@@ -73,4 +73,12 @@ public class ServiceChocolate {
         }).orElse(false);
         return aBoolean;
     }
+
+    public List<Chocolate>getByPrice(double price){
+        return chocolateRepository.getByPrice(price);
+    }
+
+    public List<Chocolate> getByDescriptionContainingIgnoreCase(String description) {
+        return chocolateRepository.getByDescriptionContainingIgnoreCase(description);
+    }
 }
