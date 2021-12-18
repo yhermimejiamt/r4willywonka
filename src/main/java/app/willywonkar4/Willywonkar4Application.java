@@ -27,9 +27,9 @@ public class Willywonkar4Application implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        userInterface.deleteAll();
-        chocolateInterface.deleteAll();
-        orderInterface.deleteAll();
+        //userInterface.deleteAll();
+        //chocolateInterface.deleteAll();
+        //orderInterface.deleteAll();
         
     }
 }

@@ -16,4 +16,5 @@ public interface InterfaceUser extends MongoRepository<User, Integer> {
 
     //metodo del crud que calcula el usuario con el ultimo Id
     Optional<User> findTopByOrderByIdDesc();
+
 }

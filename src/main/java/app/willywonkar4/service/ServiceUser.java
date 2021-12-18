@@ -15,17 +15,31 @@ import org.springframework.stereotype.Service;
 public class ServiceUser {
 
     @Autowired
+    /**
+     * Instancia la clase RepositorioUser, par utilizar sus metodos.
+     */
     private RepositoryUser userRepository;
 
+    /**
+     * Metodo que solicita todos los registros de la tabla usuario, para
+     * listarlos.
+     */
     public List<User> getAll() {
         return userRepository.getAll();
     }
 
-    public Optional<User> getUser(int id) {
+    /**
+     * Metodo opcional que solicita un usuario por medio de su numero de id.
+     */
+    public Optional<User> getUser(int idUser) {
 
-        return userRepository.getUser(id);
+        return userRepository.getUser(idUser);
     }
 
+    /**
+     * Metodo que captura los datos de un usuario registrados en los textBox de
+     * un formulario y los envia a la base de datos.
+     */
     public User createUser(User user) {
 
         //obtiene el maximo id existente en la coleccion
@@ -42,8 +56,8 @@ public class ServiceUser {
             }
         }
 
-        Optional<User> e = userRepository.getUser(user.getId());
-        if (e.isEmpty()) {
+        Optional<User> opUser = userRepository.getUser(user.getId());
+        if (opUser.isEmpty()) {
             if (emailExists(user.getEmail()) == false) {
                 return userRepository.createUser(user);
             } else {
@@ -55,6 +69,10 @@ public class ServiceUser {
 
     }
 
+    /**
+     * Metodo que captura los datos de un usuario registrados en los textBox de
+     * un formulario y los envia a la base de datos para actualizarlos.
+     */
     public User updateUser(User user) {
 
         if (user.getId() != null) {
@@ -69,7 +87,7 @@ public class ServiceUser {
                 if (user.getBirthtDay() != null) {
                     optionUser.get().setBirthtDay(user.getBirthtDay());
                 }
-                if (user.getMonthBirthtDay()!= null) {
+                if (user.getMonthBirthtDay() != null) {
                     optionUser.get().setMonthBirthtDay(user.getMonthBirthtDay());
                 }
                 if (user.getAddress() != null) {
@@ -101,18 +119,27 @@ public class ServiceUser {
 
     }
 
-    public boolean deleteUser(int userId) {
+    /**
+     * Metodo que elimina de la base de datos un unuario, por medio de su id.
+     */
+     public boolean deleteUser(int userId) {
         Boolean aBoolean = getUser(userId).map(user -> {
             userRepository.deleteUser(user);
             return true;
         }).orElse(false);
-        return aBoolean;
+        return aBoolean;// instead, just 'return doSomething();'
     }
 
+    /**
+     * Metodo utilizado para validar si el email ingresado existe.
+     */
     public boolean emailExists(String email) {
         return userRepository.existEmail(email);
     }
 
+    /**
+     * Metodo para validar email y password contra los registros de la base de datos.
+     */
     public User authenticateUser(String email, String password) {
         Optional<User> usuario = userRepository.authenticateUser(email, password);
 
