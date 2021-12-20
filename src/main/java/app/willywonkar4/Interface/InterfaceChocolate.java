@@ -16,4 +16,6 @@ public interface InterfaceChocolate extends MongoRepository<Chocolate, String> {
     List<Chocolate> findByPrice(double price);
 
     List<Chocolate> findByDescriptionContainingIgnoreCase(String description);
+    
+    
 }

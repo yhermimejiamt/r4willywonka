@@ -16,7 +16,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "chocolates")
 public class Chocolate {
 
-    @Id
+    @Id    
     private String reference;
     private String category;
     private String description;
